@@ -68,7 +68,7 @@ function App() {
     <>
       <Navbar />
 
-      <div className="container w-[98%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400 ">
+      <div className="container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400 ">
         <div className="sm:w-3/4 mx-auto">
           <div className="addTodo mb-4 ">
             <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
