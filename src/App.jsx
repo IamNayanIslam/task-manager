@@ -12,6 +12,7 @@ function App() {
   };
 
   const handleAdd = () => {
+    if (todo === null || todo.trim() === "") return;
     setTodos([{ todo, isCompleted: false, id: uuidv4() }, ...todos]);
     setTodo("");
     console.log(todos);
