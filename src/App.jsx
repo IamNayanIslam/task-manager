@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { v4 as uuidv4 } from "uuid";
 import { TodoItem } from "./components/TodoItem";
+import { FaFilter } from "react-icons/fa6";
 
 function App() {
+  const [filter, setFilter] = useState("all");
+
   // ✅ Load from localStorage initially
   const [todos, setTodos] = useState(() => {
     const saved = localStorage.getItem("todos");
@@ -88,6 +91,12 @@ function App() {
     if (confirmDelete) setTodos([]);
   };
 
+  const filteredTodos = todos.filter((item) => {
+    if (filter === "completed") return item.isCompleted;
+    if (filter === "pending") return !item.isCompleted;
+    return true; // if filter == "all"
+  });
+
   return (
     <>
       <div
@@ -145,9 +154,33 @@ function App() {
               </div>
             ) : (
               <div>
-                {todos.length >= 2 ? (
+                {filteredTodos.length >= 2 ? (
                   <div className="flex items-center pr-4 mb-4">
-                    <h2 className="text-lg font-bold px-2">Your Todos</h2>{" "}
+                    <h2 className="text-lg font-bold px-2">Your Todos</h2>
+                    <div
+                      className={
+                        darkMode
+                          ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                          : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                      }
+                    >
+                      <label htmlFor="cars">
+                        <FaFilter />
+                      </label>
+
+                      <select
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        className="outline-none cursor-pointer bg-transparent"
+                      >
+                        <option value="all" className="bg-transparent">
+                          All Tasks
+                        </option>
+                        <option value="completed">Completed Tasks</option>
+                        <option value="pending">Pending Tasks</option>
+                      </select>
+                    </div>
+
                     <button
                       onClick={deleteAll}
                       className={
@@ -160,11 +193,34 @@ function App() {
                     </button>
                   </div>
                 ) : (
-                  <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
+                  <div className="flex items-center pr-4 mb-4">
+                    <h2 className="text-lg font-bold px-2">Your Todos</h2>
+                    <div
+                      className={
+                        darkMode
+                          ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                          : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                      }
+                    >
+                      <label htmlFor="cars">
+                        <FaFilter />
+                      </label>
+
+                      <select
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        className="outline-none cursor-pointer"
+                      >
+                        <option value="all">All Tasks</option>
+                        <option value="completed">Completed Tasks</option>
+                        <option value="pending">Pending Tasks</option>
+                      </select>
+                    </div>
+                  </div>
                 )}
 
                 <div className="todos flex flex-col items-center">
-                  {todos.map((item) => (
+                  {filteredTodos.map((item) => (
                     <TodoItem
                       key={item.id}
                       item={item}
