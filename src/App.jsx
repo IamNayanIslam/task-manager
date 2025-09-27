@@ -80,7 +80,7 @@ function App() {
         <div
           className={
             darkMode
-              ? "bg-[#3C3D37] container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
+              ? "bg-[#3C3D37] container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 min-h-[80vh] border border-gray-400"
               : "container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
           }
         >
@@ -115,7 +115,13 @@ function App() {
             </div>
             {todos.length === 0 ? (
               <div className="px-2">
-                <p className="text-center py-2 bg-red-300 text-lg text-red-700 rounded-md">
+                <p
+                  className={
+                    darkMode
+                      ? "text-center py-2 bg-[#4d4d4d] text-lg text-[#252525] rounded-md"
+                      : "text-center py-2 bg-red-300 text-lg text-red-700 rounded-md"
+                  }
+                >
                   No Tasks to show!
                 </p>
               </div>
