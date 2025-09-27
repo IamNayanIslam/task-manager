@@ -1,4 +1,6 @@
 import React from "react";
+import { MdDeleteForever } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 export const TodoItem = ({
   item,
@@ -41,22 +43,23 @@ export const TodoItem = ({
           onClick={() => handleEdit(item.id)}
           className={
             darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
-              : "w-full bg-cyan-800 hover:bg-cyan-900 px-4 py-2 rounded-md text-white"
+              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
+              : "w-full bg-cyan-800 hover:bg-cyan-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
           }
         >
+          <FaRegEdit />
           Edit
         </button>
         <button
           onClick={handleDelete}
           className={
             darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
-              : "w-full bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white"
+              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
+              : "w-full bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white  flex items-center gap-1"
           }
           name={item.id}
         >
-          Delete
+          <MdDeleteForever /> Delete
         </button>
       </div>
     </div>

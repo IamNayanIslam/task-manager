@@ -3,7 +3,8 @@ import { Navbar } from "./components/Navbar";
 import { v4 as uuidv4 } from "uuid";
 import { TodoItem } from "./components/TodoItem";
 import { FaFilter } from "react-icons/fa6";
-
+import { MdDeleteForever } from "react-icons/md";
+import { LuListTodo } from "react-icons/lu";
 function App() {
   const [filter, setFilter] = useState("all");
 
@@ -132,11 +133,11 @@ function App() {
                   onClick={handleAdd}
                   className={
                     darkMode
-                      ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
-                      : "bg-green-800 hover:bg-green-900 px-4 py-2 rounded-md text-white"
+                      ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
+                      : "bg-green-800 hover:bg-green-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
                   }
                 >
-                  Add
+                  <LuListTodo /> Add
                 </button>
               </div>
             </div>
@@ -192,11 +193,11 @@ function App() {
                       onClick={deleteAll}
                       className={
                         darkMode
-                          ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
-                          : "bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white"
+                          ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
+                          : "bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
                       }
                     >
-                      Delete All
+                      <MdDeleteForever /> All
                     </button>
                   </div>
                 ) : (
