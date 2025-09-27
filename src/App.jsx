@@ -181,7 +181,7 @@ function App() {
                           All
                         </option>
                         <option value="completed" className="text-center">
-                          Completed
+                          Done
                         </option>
                         <option value="pending" className="text-center">
                           Pending
@@ -226,7 +226,7 @@ function App() {
                           All
                         </option>
                         <option value="completed" className="text-center">
-                          Completed
+                          Done
                         </option>
                         <option value="pending" className="text-center">
                           Pending
