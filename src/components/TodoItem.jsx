@@ -43,8 +43,8 @@ export const TodoItem = ({
           onClick={() => handleEdit(item.id)}
           className={
             darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-              : "w-full bg-cyan-800 hover:bg-cyan-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
+              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
+              : "w-full bg-cyan-800 hover:bg-cyan-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
           }
         >
           <FaRegEdit />
@@ -54,8 +54,8 @@ export const TodoItem = ({
           onClick={handleDelete}
           className={
             darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-              : "w-full bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white  flex items-center gap-1"
+              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
+              : "w-full bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white  flex items-center gap-1 justify-center"
           }
           name={item.id}
         >
