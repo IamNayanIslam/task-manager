@@ -160,8 +160,8 @@ function App() {
                     <div
                       className={
                         darkMode
-                          ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
-                          : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                          ? "bg-[#4d4d4d] flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
+                          : "bg-white flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
                       }
                     >
                       <label
@@ -176,9 +176,15 @@ function App() {
                         onChange={(e) => setFilter(e.target.value)}
                         className="outline-none cursor-pointer bg-transparent"
                       >
-                        <option value="all">All Tasks</option>
-                        <option value="completed">Completed Tasks</option>
-                        <option value="pending">Pending Tasks</option>
+                        <option value="all" className="text-center">
+                          All
+                        </option>
+                        <option value="completed" className="text-center">
+                          Completed
+                        </option>
+                        <option value="pending" className="text-center">
+                          Pending
+                        </option>
                       </select>
                     </div>
 
@@ -196,6 +202,36 @@ function App() {
                 ) : (
                   <div className="flex items-center pr-4 mb-4">
                     <h2 className="text-lg font-bold px-2">Your Todos</h2>
+                    <div
+                      className={
+                        darkMode
+                          ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                          : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                      }
+                    >
+                      <label
+                        htmlFor="filter"
+                        className="cursor-pointer bg-transparent"
+                      >
+                        <FaFilter />
+                      </label>
+
+                      <select
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        className="outline-none cursor-pointer bg-transparent"
+                      >
+                        <option value="all" className="text-center">
+                          All
+                        </option>
+                        <option value="completed" className="text-center">
+                          Completed
+                        </option>
+                        <option value="pending" className="text-center">
+                          Pending
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 )}
 
