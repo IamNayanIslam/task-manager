@@ -6,6 +6,12 @@ import { TodoItem } from "./components/TodoItem";
 function App() {
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode);
+  };
 
   const handleChange = (e) => {
     setTodo(e.target.value);
@@ -66,65 +72,88 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <div
+        className={darkMode ? "bg-[#4d4d4d] h-[100vh]" : "bg-white h-[100vh]"}
+      >
+        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
 
-      <div className="container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400 ">
-        <div className="sm:w-3/4 mx-auto">
-          <div className="addTodo mb-4 ">
-            <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
+        <div
+          className={
+            darkMode
+              ? "bg-[#3C3D37] container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
+              : "container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
+          }
+        >
+          <div className="sm:w-3/4 mx-auto">
+            <div className="addTodo mb-4 ">
+              <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
 
-            <div className="flex gap-2 sm:gap-4 px-2">
-              <input
-                className="p-2 rounded-md flex-1 border border-gray-400"
-                type="text"
-                placeholder="Describe your Task"
-                onChange={handleChange}
-                value={todo}
-                onKeyDown={handleEnter}
-              />
-              <button
-                onClick={handleAdd}
-                className="bg-green-800 px-4 py-2 rounded-md text-white"
-              >
-                Add
-              </button>
-            </div>
-          </div>
-          {todos.length === 0 ? (
-            <div className="px-2">
-              <p className="text-center py-2 bg-red-300 text-lg text-red-700 rounded-md">
-                No Tasks to show!
-              </p>
-            </div>
-          ) : (
-            <div>
-              {todos.length >= 2 ? (
-                <div className="flex items-center pr-4 mb-4">
-                  <h2 className="text-lg font-bold px-2">Your Todos</h2>{" "}
-                  <button
-                    onClick={deleteAll}
-                    className="bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white"
-                  >
-                    Delete All
-                  </button>
-                </div>
-              ) : (
-                <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
-              )}
-
-              <div className="todos flex flex-col items-center">
-                {todos.map((item) => (
-                  <TodoItem
-                    key={item.id}
-                    item={item}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                    handleCheckbox={handleCheckbox}
-                  />
-                ))}
+              <div className="flex gap-2 sm:gap-4 px-2">
+                <input
+                  className={
+                    darkMode
+                      ? "p-2 rounded-md flex-1 border bg-[#4d4d4d] border-gray-400"
+                      : "p-2 rounded-md flex-1 border border-gray-400"
+                  }
+                  type="text"
+                  placeholder="Describe your Task"
+                  onChange={handleChange}
+                  value={todo}
+                  onKeyDown={handleEnter}
+                />
+                <button
+                  onClick={handleAdd}
+                  className={
+                    darkMode
+                      ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
+                      : "bg-green-800 hover:bg-green-900 px-4 py-2 rounded-md text-white"
+                  }
+                >
+                  Add
+                </button>
               </div>
             </div>
-          )}
+            {todos.length === 0 ? (
+              <div className="px-2">
+                <p className="text-center py-2 bg-red-300 text-lg text-red-700 rounded-md">
+                  No Tasks to show!
+                </p>
+              </div>
+            ) : (
+              <div>
+                {todos.length >= 2 ? (
+                  <div className="flex items-center pr-4 mb-4">
+                    <h2 className="text-lg font-bold px-2">Your Todos</h2>{" "}
+                    <button
+                      onClick={deleteAll}
+                      className={
+                        darkMode
+                          ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white"
+                          : "bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white"
+                      }
+                    >
+                      Delete All
+                    </button>
+                  </div>
+                ) : (
+                  <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
+                )}
+
+                <div className="todos flex flex-col items-center">
+                  {todos.map((item) => (
+                    <TodoItem
+                      key={item.id}
+                      item={item}
+                      handleEdit={handleEdit}
+                      handleDelete={handleDelete}
+                      handleCheckbox={handleCheckbox}
+                      darkMode={darkMode}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
