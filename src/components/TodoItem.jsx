@@ -1,4 +1,4 @@
-import React from "react";
+import ButtonComponent from "./ButtonComponent";
 import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
@@ -39,28 +39,24 @@ export const TodoItem = ({
 
       {/* Right side: buttons */}
       <div className="buttons w-full sm:w-auto flex sm:flex-row gap-2 sm:gap-4">
-        <button
-          onClick={() => handleEdit(item.id)}
-          className={
-            darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
-              : "w-full bg-cyan-800 hover:bg-cyan-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
-          }
+        <ButtonComponent
+          darkMode={darkMode}
+          handleClick={() => handleEdit(item.id)}
+          primaryColor="bg-cyan-800 hover:bg-cyan-900"
+          darkColor="bg-slate-800 hover:bg-slate-900"
         >
           <FaRegEdit />
           Edit
-        </button>
-        <button
-          onClick={handleDelete}
-          className={
-            darkMode
-              ? "w-full bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1 justify-center"
-              : "w-full bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white  flex items-center gap-1 justify-center"
-          }
-          name={item.id}
+        </ButtonComponent>
+        <ButtonComponent
+          darkMode={darkMode}
+          handleClick={handleDelete}
+          primaryColor="bg-red-800 hover:bg-red-900"
+          darkColor="bg-slate-800 hover:bg-slate-900"
+          buttonName={item.id}
         >
           <MdDeleteForever /> Delete
-        </button>
+        </ButtonComponent>
       </div>
     </div>
   );

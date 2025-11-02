@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
+import ButtonComponent from "./components/ButtonComponent";
 import { v4 as uuidv4 } from "uuid";
 import { TodoItem } from "./components/TodoItem";
 import { FaFilter } from "react-icons/fa6";
@@ -84,6 +85,7 @@ function App() {
       let id = e.target.name;
       let updatedTodos = todos.filter((item) => item.id !== id);
       setTodos(updatedTodos);
+      console.log(updatedTodos);
     }
   };
 
@@ -139,6 +141,14 @@ function App() {
                 >
                   <LuListTodo /> Add
                 </button>
+                <ButtonComponent
+                  darkMode={darkMode}
+                  handleClick={handleAdd}
+                  primaryColor="bg-green-800 hover:bg-green-900"
+                  darkColor="bg-slate-800 hover:bg-slate-900"
+                >
+                  <LuListTodo /> Add
+                </ButtonComponent>
               </div>
             </div>
             {todos.length === 0 ? (
@@ -188,17 +198,14 @@ function App() {
                         </option>
                       </select>
                     </div>
-
-                    <button
-                      onClick={deleteAll}
-                      className={
-                        darkMode
-                          ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-                          : "bg-red-800 hover:bg-red-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-                      }
+                    <ButtonComponent
+                      darkMode={darkMode}
+                      handleClick={deleteAll}
+                      primaryColor="bg-red-800 hover:bg-red-900"
+                      darkColor="bg-slate-800 hover:bg-slate-900"
                     >
                       <MdDeleteForever /> All
-                    </button>
+                    </ButtonComponent>
                   </div>
                 ) : (
                   <div className="flex items-center pr-4 mb-4">
