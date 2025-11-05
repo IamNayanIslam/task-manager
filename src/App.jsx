@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import ButtonComponent from "./components/ButtonComponent";
+import AddTaskForm from "./components/AddTaskForm";
 import { v4 as uuidv4 } from "uuid";
 import { TodoItem } from "./components/TodoItem";
 import { FaFilter } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
-import { LuListTodo } from "react-icons/lu";
+
 function App() {
   const [filter, setFilter] = useState("all");
 
@@ -115,42 +116,13 @@ function App() {
           }
         >
           <div className="sm:w-3/4 mx-auto">
-            <div className="addTodo mb-4 ">
-              <h2 className="text-lg font-bold mb-4 px-2">Add a Task</h2>
-
-              <div className="flex gap-2 sm:gap-4 px-2">
-                <input
-                  className={
-                    darkMode
-                      ? "p-2 rounded-md flex-1 border bg-[#4d4d4d] border-gray-400"
-                      : "p-2 rounded-md flex-1 border border-gray-400"
-                  }
-                  type="text"
-                  placeholder="Describe your Task"
-                  onChange={handleChange}
-                  value={todo}
-                  onKeyDown={handleEnter}
-                />
-                <button
-                  onClick={handleAdd}
-                  className={
-                    darkMode
-                      ? "bg-slate-800 hover:bg-slate-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-                      : "bg-green-800 hover:bg-green-900 px-4 py-2 rounded-md text-white flex items-center gap-1"
-                  }
-                >
-                  <LuListTodo /> Add
-                </button>
-                <ButtonComponent
-                  darkMode={darkMode}
-                  handleClick={handleAdd}
-                  primaryColor="bg-green-800 hover:bg-green-900"
-                  darkColor="bg-slate-800 hover:bg-slate-900"
-                >
-                  <LuListTodo /> Add
-                </ButtonComponent>
-              </div>
-            </div>
+            <AddTaskForm
+              darkMode={darkMode}
+              handleChange={handleChange}
+              todo={todo}
+              handleEnter={handleEnter}
+              handleAdd={handleAdd}
+            />
             {todos.length === 0 ? (
               <div className="px-2">
                 <p
