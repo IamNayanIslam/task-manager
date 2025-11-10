@@ -33,7 +33,7 @@ function App() {
   }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prev) => !prev);
     console.log(darkMode);
   };
 
@@ -102,137 +102,133 @@ function App() {
   });
 
   return (
-    <>
+    <div className={darkMode ? "bg-[#4d4d4d] h-[100vh]" : "bg-white h-[100vh]"}>
+      <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+
       <div
-        className={darkMode ? "bg-[#4d4d4d] h-[100vh]" : "bg-white h-[100vh]"}
+        className={
+          darkMode
+            ? "bg-[#3C3D37] container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 min-h-[80vh] border border-gray-400"
+            : "container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
+        }
       >
-        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-
-        <div
-          className={
-            darkMode
-              ? "bg-[#3C3D37] container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 min-h-[80vh] border border-gray-400"
-              : "container w-[96%] lg:w-3/4 mx-auto my-5 rounded-xl p-1 md:p-5 bg-[#f9f9f9] min-h-[80vh] border border-gray-400"
-          }
-        >
-          <div className="sm:w-3/4 mx-auto">
-            <AddTaskForm
-              darkMode={darkMode}
-              handleChange={handleChange}
-              todo={todo}
-              handleEnter={handleEnter}
-              handleAdd={handleAdd}
-            />
-            {todos.length === 0 ? (
-              <div className="px-2">
-                <p
-                  className={
-                    darkMode
-                      ? "text-center py-2 bg-[#4d4d4d] text-lg text-[#252525] rounded-md"
-                      : "text-center py-2 bg-red-300 text-lg text-red-700 rounded-md"
-                  }
-                >
-                  No Tasks to show!
-                </p>
-              </div>
-            ) : (
-              <div>
-                {filteredTodos.length >= 2 ? (
-                  <div className="flex items-center pr-4 mb-4">
-                    <h2 className="text-lg font-bold px-2">Your Todos</h2>
-                    <div
-                      className={
-                        darkMode
-                          ? "bg-[#4d4d4d] flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
-                          : "bg-white flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
-                      }
+        <div className="sm:w-3/4 mx-auto">
+          <AddTaskForm
+            darkMode={darkMode}
+            handleChange={handleChange}
+            todo={todo}
+            handleEnter={handleEnter}
+            handleAdd={handleAdd}
+          />
+          {todos.length === 0 ? (
+            <div className="px-2">
+              <p
+                className={
+                  darkMode
+                    ? "text-center py-2 bg-[#4d4d4d] text-lg text-[#252525] rounded-md"
+                    : "text-center py-2 bg-red-300 text-lg text-red-700 rounded-md"
+                }
+              >
+                No Tasks to show!
+              </p>
+            </div>
+          ) : (
+            <div>
+              {filteredTodos.length >= 2 ? (
+                <div className="flex items-center pr-4 mb-4">
+                  <h2 className="text-lg font-bold px-2">Your Todos</h2>
+                  <div
+                    className={
+                      darkMode
+                        ? "bg-[#4d4d4d] flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
+                        : "bg-white flex items-center mx-2 p-2 rounded-md gap-1 border border-gray-400"
+                    }
+                  >
+                    <label
+                      htmlFor="filter"
+                      className="cursor-pointer bg-transparent"
                     >
-                      <label
-                        htmlFor="filter"
-                        className="cursor-pointer bg-transparent"
-                      >
-                        <FaFilter />
-                      </label>
+                      <FaFilter />
+                    </label>
 
-                      <select
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                        className="outline-none cursor-pointer bg-transparent"
-                      >
-                        <option value="all" className="text-center">
-                          All
-                        </option>
-                        <option value="completed" className="text-center">
-                          Done
-                        </option>
-                        <option value="pending" className="text-center">
-                          Pending
-                        </option>
-                      </select>
-                    </div>
-                    <ButtonComponent
-                      darkMode={darkMode}
-                      handleClick={deleteAll}
-                      primaryColor="bg-red-800 hover:bg-red-900"
-                      darkColor="bg-slate-800 hover:bg-slate-900"
+                    <select
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                      className="outline-none cursor-pointer bg-transparent"
                     >
-                      <MdDeleteForever /> All
-                    </ButtonComponent>
+                      <option value="all" className="text-center">
+                        All
+                      </option>
+                      <option value="completed" className="text-center">
+                        Done
+                      </option>
+                      <option value="pending" className="text-center">
+                        Pending
+                      </option>
+                    </select>
                   </div>
-                ) : (
-                  <div className="flex items-center pr-4 mb-4">
-                    <h2 className="text-lg font-bold px-2">Your Todos</h2>
-                    <div
-                      className={
-                        darkMode
-                          ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
-                          : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
-                      }
-                    >
-                      <label
-                        htmlFor="filter"
-                        className="cursor-pointer bg-transparent"
-                      >
-                        <FaFilter />
-                      </label>
-
-                      <select
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                        className="outline-none cursor-pointer bg-transparent"
-                      >
-                        <option value="all" className="text-center">
-                          All
-                        </option>
-                        <option value="completed" className="text-center">
-                          Done
-                        </option>
-                        <option value="pending" className="text-center">
-                          Pending
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                )}
-
-                <div className="todos flex flex-col items-center">
-                  {filteredTodos.map((item) => (
-                    <TodoItem
-                      key={item.id}
-                      item={item}
-                      handleEdit={handleEdit}
-                      handleDelete={handleDelete}
-                      handleCheckbox={handleCheckbox}
-                      darkMode={darkMode}
-                    />
-                  ))}
+                  <ButtonComponent
+                    darkMode={darkMode}
+                    handleClick={deleteAll}
+                    primaryColor="bg-red-800 hover:bg-red-900"
+                    darkColor="bg-slate-800 hover:bg-slate-900"
+                  >
+                    <MdDeleteForever /> All
+                  </ButtonComponent>
                 </div>
+              ) : (
+                <div className="flex items-center pr-4 mb-4">
+                  <h2 className="text-lg font-bold px-2">Your Todos</h2>
+                  <div
+                    className={
+                      darkMode
+                        ? "bg-[#4d4d4d] flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                        : "bg-white flex items-center mx-4 p-2 rounded-md gap-2 border border-gray-400"
+                    }
+                  >
+                    <label
+                      htmlFor="filter"
+                      className="cursor-pointer bg-transparent"
+                    >
+                      <FaFilter />
+                    </label>
+
+                    <select
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                      className="outline-none cursor-pointer bg-transparent"
+                    >
+                      <option value="all" className="text-center">
+                        All
+                      </option>
+                      <option value="completed" className="text-center">
+                        Done
+                      </option>
+                      <option value="pending" className="text-center">
+                        Pending
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              <div className="todos flex flex-col items-center">
+                {filteredTodos.map((item) => (
+                  <TodoItem
+                    key={item.id}
+                    item={item}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                    handleCheckbox={handleCheckbox}
+                    darkMode={darkMode}
+                  />
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
